@@ -137,11 +137,13 @@ pub fn resolve(
         _ => None,
     };
     let mut registry = RegistryQueryer::new(registry, replacements, version_prefs);
+    let begin = Instant::now();
 
     // Global cache of the reasons for each time we backtrack.
     let mut past_conflicting_activations = conflict_cache::ConflictCache::new();
 
     let resolver_ctx = loop {
+        println!("{:?}", Instant::now() - begin);
         let resolver_ctx = ResolverContext::new();
         let resolver_ctx = activate_deps_loop(
             resolver_ctx,
