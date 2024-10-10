@@ -782,7 +782,7 @@ impl RemainingCandidates {
             //
             // Here we throw out our candidate if it's *compatible*, yet not
             // equal, to all previously activated versions.
-            if let Some((a, _)) = cx.activations.get(&b_id.as_activations_key()) {
+            if let Some((a, _)) = cx.activations.get(&b_id.activation_key()) {
                 if a != b {
                     conflicting_prev_active
                         .entry(a.package_id())
